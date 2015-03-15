@@ -2,9 +2,9 @@ require_relative "execution_result"
 
 class CommandBase
 
-  def initialize(execute_method, business_rules_method)
+  def initialize(execute_method, rules_method)
     @execute_method = execute_method
-    @business_rules_method = business_rules_method
+    @rules_method = rules_method
   end
 
   def can_execute?
@@ -25,7 +25,7 @@ class CommandBase
 
   def get_validation_errors
     #raise "must implement get_validation_errors"
-    errors = @business_rules_method.call
+    errors = @rules_method.call
   end
 
 end
