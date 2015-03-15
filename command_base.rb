@@ -25,7 +25,7 @@ class CommandBase
 
   def get_validation_errors
     rules =  @rules_method.call
-    errors = rules.select { |rule| rule.validate; !rule.is_valid }
+    errors = rules.select { |rule| rule.validate; !rule.valid? }
                   .map { |error| error.error_message }               
   end
 
