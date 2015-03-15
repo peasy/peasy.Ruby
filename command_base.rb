@@ -24,8 +24,9 @@ class CommandBase
   protected
 
   def get_validation_errors
-    #raise "must implement get_validation_errors"
-    errors = @rules_method.call
+    rules =  @rules_method.call
+    errors = rules.select { |rule| rule.validate; !rule.is_valid }
+                  .map { |error| error.error_message }               
   end
 
 end
