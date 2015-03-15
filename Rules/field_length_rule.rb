@@ -9,11 +9,8 @@ class FieldLengthRule < RuleBase
   end
 
   def on_validate
-    puts @entity[@field].length
     @is_valid = @entity[@field].length <= @length
-    puts @is_valid
     @error_message = "#{@field} must be equal to or less than #{@length} characters"
-    puts @error_message 
-    return @is_valid 
+    @is_valid 
   end
 end
