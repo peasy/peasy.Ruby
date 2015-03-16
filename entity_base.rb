@@ -1,5 +1,5 @@
 class EntityBase
-  def id=(value)
+  def id
     raise "id must be implemented"
   end
 end

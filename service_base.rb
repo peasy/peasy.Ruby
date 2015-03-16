@@ -1,4 +1,5 @@
 require_relative "command_base"
+require_relative "Rules/greater_than_integer_rule"
 
 class ServiceBase
 
@@ -33,6 +34,7 @@ class ServiceBase
   end
 
   def rules_for_get_by_id(id)
+    #[ FieldRequiredRule.new(entity, :id) ]
     []
   end
 
@@ -53,14 +55,14 @@ class ServiceBase
   end
 
   def update(entity)
+    #current = get_by_id(entity[:id])
+    #current.revert_non_editable_fields()
     @data_proxy.update(entity)
   end
 
   def rules_for_update(entity)
-    #return Proc.new do
-      ## return entity_must_contain_id_field_rule
-    #end
-    []
+    [ FieldRequiredRule.new(entity, :id)
+                       .if_valid_then_validate(GreaterThanIntegerRule.new(:id, entity[:id], 0)) ]
   end
 
   def delete(id) 
@@ -68,6 +70,7 @@ class ServiceBase
   end
 
   def rules_for_delete(id)
+    #[ FieldRequiredRule.new(entity, :id) ]
     []
   end
 
