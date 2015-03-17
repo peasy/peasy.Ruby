@@ -1,4 +1,4 @@
-require_relative "command_base"
+require_relative "command"
 require_relative "execution_result"
 require_relative "service_base"
 require_relative "DataProxies/DatabaseProxies/customer_database_proxy"
@@ -39,7 +39,15 @@ commands << service.insert_command({:id => 10, :name => "Aargssssssssss"})
 commands << service.insert_command({:id => 11, :name => ""})
 
 results = []
-threads = commands.map { |command| Thread.new(command) { |command| results << command.execute } }
+#threads = commands.map { |command| Thread.new(command) { |command| results << command.execute } }
+mutex = Mutex.new
+threads = commands.map do |command|
+  Thread.new(command) do |command|
+    mutex.synchronize do
+      results << command.execute
+    end
+  end
+end
 threads.each { |t| t.join }
 
 results.each { |result| puts result.inspect }

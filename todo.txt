@@ -1,0 +1,30 @@
+#dependency injection
+
+#restful proxy base
+
+#logo
+
+#add to github
+
+#documentation for github
+
+#review ruby projects on github for
+  - organizational structure
+  - file references
+
+#create mappings concept - list fields for entities and the fields that can/cannot be updated - equivalent of .net attributes
+
+#write tests for the framework
+
+#introduce different types of errors so that the consumer can respond differently (ValidationError, BusinessRuleError, AuthorizationError) -> consumer can check the type and issue statuses accordingly (400s)
+
+Pros
+
+~ enforces developer consistency
+~ facilitates scalability via injectable data proxies
+~ reduces dependencies on other frameworks, such as rails and active record
+~ facilitates highly reusable code
+~ faciliates easy to write tests
+~ easy to extend
+~ keep validation, business, and authorization rules in one place
+

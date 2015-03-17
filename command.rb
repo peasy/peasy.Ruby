@@ -1,6 +1,6 @@
 require_relative "execution_result"
 
-class CommandBase
+class Command
 
   def initialize(execute_method, rules_method)
     @execute_method = execute_method
